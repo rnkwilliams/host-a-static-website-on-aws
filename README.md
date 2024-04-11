@@ -1,31 +1,66 @@
 ![Alt text](/Host_a_Static_Website_on_AWS.png)
 
 ---
-
 # Hosting a Static Website on AWS
 
 ## Overview
-This repository contains scripts and resources to deploy a static HTML web application on AWS. The following components and configurations were utilized.
 
-## Architecture
-- **Virtual Private Cloud (VPC):** Configured a VPC with public and private subnets across two availability zones for enhanced reliability and fault tolerance.
-- **Internet Gateway:** Deployed an Internet Gateway to facilitate connectivity between VPC instances and the wider Internet.
-- **Security Groups:** Established Security Groups as a network firewall mechanism to control traffic to and from instances.
-- **Availability Zones:** Leveraged two Availability Zones to enhance system reliability and fault tolerance.
-- **Subnets:** 
-  - Utilized Public Subnets for infrastructure components like NAT Gateway and Application Load Balancer.
-  - Positioned web servers (EC2 instances) within Private Subnets for enhanced security.
-- **EC2 Instance Connect:** Implemented EC2 Instance Connect Endpoint for secure connections to assets within both public and private subnets.
-- **NAT Gateway:** Enabled instances in private subnets to access the Internet via the NAT Gateway.
-- **Web Hosting:** Hosted the website on EC2 Instances.
-- **Application Load Balancer (ALB):** Employed an ALB and a target group for evenly distributing web traffic to an Auto Scaling Group of EC2 instances across multiple Availability Zones.
-- **Auto Scaling Group:** Utilized an Auto Scaling Group to automatically manage EC2 instances, ensuring website availability, scalability, fault tolerance, and elasticity.
-- **Version Control:** Stored web files on GitHub for version control and collaboration.
-- **Certificate Manager:** Secured application communications using a Certificate Manager.
-- **Simple Notification Service (SNS):** Configured SNS to alert about activities within the Auto Scaling Group.
-- **DNS Configuration:** Registered the domain name and set up a DNS record using Route 53.
+This project focuses on deploying a static HTML web application on Amazon Web Services (AWS) infrastructure. Utilizing various AWS services and configurations, we ensure the security, reliability, and scalability of the hosted web application.
+
+## Infrastructure Setup
+
+1. **Virtual Private Cloud (VPC):**
+   - Configured a VPC with both public and private subnets across two availability zones for enhanced redundancy and fault tolerance.
+
+2. **Internet Gateway (IGW):**
+   - Deployed an Internet Gateway to facilitate connectivity between VPC instances and the wider Internet.
+
+3. **Security Groups:**
+   - Established Security Groups as a network firewall mechanism to control traffic to EC2 instances.
+
+4. **Availability Zones (AZs):**
+   - Leveraged two Availability Zones to enhance system reliability and fault tolerance.
+
+5. **Subnet Configuration:**
+   - Utilized Public Subnets for infrastructure components like the NAT Gateway and Application Load Balancer.
+   - Positioned web servers (EC2 instances) within Private Subnets for enhanced security.
+
+6. **EC2 Instance Connect Endpoint:**
+   - Implemented EC2 Instance Connect Endpoint for secure connections to assets within both public and private subnets.
+
+## Deployment Process
+
+1. **Deployment Script:**
+   - Provided a deployment script for automating the setup process.
+   - The script installs necessary packages, clones the project repository from GitHub, and configures Apache HTTP Server to serve web content.
+
+2. **GitHub Integration:**
+   - Stored web files on GitHub for version control and collaboration.
+
+## Scalability and Reliability
+
+1. **Auto Scaling Group (ASG):**
+   - Employed an Auto Scaling Group to automatically manage EC2 instances.
+   - Ensured website availability, scalability, fault tolerance, and elasticity.
+
+2. **Application Load Balancer (ALB):**
+   - Utilized an Application Load Balancer and a target group for evenly distributing web traffic across multiple Availability Zones.
+
+## Security Measures
+
+1. **Certificate Manager:**
+   - Secured application communications using a Certificate Manager.
+
+2. **Simple Notification Service (SNS):**
+   - Configured Simple Notification Service (SNS) to alert about activities within the Auto Scaling Group.
+
+## Domain Configuration
+
+1. **Route 53:**
+   - Registered the domain name and set up a DNS record using Route 53.
 
 ## Deployment Script
+
 ```bash
 #!/bin/bash
 
@@ -60,11 +95,12 @@ systemctl enable httpd
 systemctl start httpd
 ```
 
-## Note
+## Conclusion
+
 Ensure to customize configurations such as domain name, security settings, and scaling policies according to your specific requirements before deployment.
 
-For any issues or inquiries, please refer to the GitHub repository or contact [rnkwilliams](https://github.com/rnkwilliams).
+For any issues or inquiries, please refer to the GitHub repository or contact rnkwilliams.
 
 **Disclaimer:** Please ensure the security configurations and best practices are thoroughly reviewed and implemented before deploying any resources in a production environment.
 
----
+--- 
